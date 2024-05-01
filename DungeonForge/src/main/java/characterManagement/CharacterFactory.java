@@ -2,37 +2,33 @@ package characterManagement;
 
 public class CharacterFactory {
 	
-	public Character createClass(classType type) 
+	public Character createCharacter(classType type, raceType race, String name) 
 	{
 		switch(type) {
 			case BARBARIAN:
-				return new Barbarian();
+				return new Barbarian(race, name);
 			case BARD:
-				return new Bard();
+				return new Bard(race, name);
 			case CLERIC:
-				return new Cleric();
+				return new Cleric(race, name);
 			case DRUID:
-				return new Druid();
+				return new Druid(race, name);
 			case FIGHTER:
-				return new Fighter();
+				return new Fighter(race, name);
 			case MONK:
-				return new Monk();
+				return new Monk(race, name);
 			case PALADIN:
-				return new Paladin();
+				return new Paladin(race, name);
 			case RANGER:
-				return new Ranger();
+				return new Ranger(race, name);
 			case ROGUE:
-				return new Rogue();
+				return new Rogue(race, name);
 			case SORCERER:
-				return new Sorcerer();
+				return new Sorcerer(race, name);
 			case WARLOCK:
-				return new Warlock();
+				return new Warlock(race, name);
 			case WIZARD:
-				return new Wizard();
-			case ARTIFICER:
-				return new Artificer();
-			case BLOODHUNTER:
-				return new BloodHunter();
+				return new Wizard(race, name);
 			default:
 				throw new IllegalArgumentException("Invalid character type: " + type);
 		}

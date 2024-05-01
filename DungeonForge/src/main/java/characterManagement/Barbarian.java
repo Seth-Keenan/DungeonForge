@@ -9,9 +9,28 @@ public class Barbarian implements Character{
 	public int wisdom = 0;
 	public int charisma = 0;
 	
+	private String race;
+	private String name;
+	
+	public Barbarian(raceType race, String name) {
+		this.race = race.toString().toLowerCase();
+		this.name = name;
+	}
+
+	@Override
+	public String getRace() {
+		return race.toString();
+	}
+	
+	@Override
+	public String getName() 
+	{
+		return name;
+	}
+	
 	@Override
 	public void talk() {
-		System.out.println("I am a Barbarian");		
+		System.out.println("I am " + this.getName() + " a barbarian of " + this.getRace() + " decent.");		
 	}
 	
 	@Override
@@ -73,5 +92,4 @@ public class Barbarian implements Character{
 	public void setCharisma(int charisma) {
 		this.charisma = charisma;
 	}
-
 }

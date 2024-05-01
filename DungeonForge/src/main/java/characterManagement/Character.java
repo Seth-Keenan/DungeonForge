@@ -4,6 +4,9 @@ public interface Character {
 	
 	void talk();
 	
+	String getRace();
+	String getName();
+	
 	int getStrength();
 	void setStrength(int strength);
 	

@@ -9,6 +9,25 @@ public class Rogue implements Character{
 	public int wisdom = 0;
 	public int charisma = 0;
 	
+	private raceType race;
+	private String name;
+	
+	public Rogue(raceType race, String name) {
+		this.race = race;
+		this.name = name;
+	}
+
+	@Override
+	public String getRace() {
+		return race.toString();
+	}
+	
+	@Override
+	public String getName() 
+	{
+		return name;
+	}
+	
 	@Override
 	public void talk() {
 		System.out.println("I am a Rouge");		

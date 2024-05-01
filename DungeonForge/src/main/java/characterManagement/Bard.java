@@ -2,18 +2,38 @@ package characterManagement;
 
 public class Bard implements Character{
 	
-	public int strength = 0;
-	public int dex = 0;
-	public int consti = 0;
-	public int intel = 0;
-	public int wisdom = 0;
-	public int charisma = 0;
+	private int strength = 0;
+	private int dex = 0;
+	private int consti = 0;
+	private int intel = 0;
+	private int wisdom = 0;
+	private int charisma = 0;
+	
+	private String race;
+	private String name;
+	
+	public Bard(raceType race, String name) {
+		this.race = race.toString().toLowerCase();
+		this.name = name.toLowerCase();
+	}
+
+	@Override
+	public String getRace() {
+		return race.toString();
+	}
+	
+	@Override
+	public String getName() 
+	{
+		return name;
+	}
+	
 	
 	@Override
 	public void talk() {
 		System.out.println("I am a Bard");		
 	}
-
+	
 	@Override
 	public int getStrength() {
 		return strength;
