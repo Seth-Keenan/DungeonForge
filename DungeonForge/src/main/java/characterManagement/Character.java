@@ -1,16 +1,24 @@
 package characterManagement;
 
-public abstract class Character {
+public interface Character {
+	
+	void talk();
+	
+	int getStrength();
+	void setStrength(int strength);
+	
+	int getDex();
+	void setDex(int dex);
+	
+	int getConsti();
+	void setConsti(int consti);
 
-	protected classType type;
+	int getIntel();
+	void setIntel(int intel);
 	
-	public classType getType() 
-	{
-		return type;
-	}
+	int getWisdom();
+	void setWisdom(int wisdom);
 	
-	public void setType(classType type) 
-	{
-		this.type = type; 	
-	}
+	int getCharisma();
+	void setCharisma(int charisma);
 }
