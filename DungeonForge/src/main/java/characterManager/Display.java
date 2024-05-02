@@ -48,7 +48,7 @@ public class Display {
     	System.out.println("1.) Create New Character");
 		System.out.println("2.) Import Custom Stats");
 		System.out.println("3.) Display Current Character");
-		System.out.println("4.) Display all save Characters");
+		System.out.println("4.) Display all saved Characters");
 		System.out.println("5.) Save Character");
 		System.out.println("6.) Clear Character List");
         System.out.print("Enter your choice (1-6): ");

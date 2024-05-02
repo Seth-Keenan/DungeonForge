@@ -19,6 +19,7 @@ public class CharacterFile {
 			writer.newLine();
 			writer.write(character.getName() + "," + character.getType() + "," + character.getRace() + "," + character.getLevel() + "," + character.getStr() + "," + character.getDex() + "," + character.getCon() + "," + character.getIntel() + "," + character.getWis() + "," + character.getCha());
 			writer.flush();
+			System.out.println("Character saved.");
 		} catch (IOException e) {
 			System.out.println("An error has occured while saving your character.");
 		}

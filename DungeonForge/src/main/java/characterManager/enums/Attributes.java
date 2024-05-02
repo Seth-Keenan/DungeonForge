@@ -33,7 +33,6 @@ public enum Attributes {
             System.out.println("Intelligence: " + player.getIntel());
             System.out.println("Wisdom: " + player.getWis());
             System.out.println("Charisma: " + player.getCha());
-            System.out.println();
             
             System.out.println("Choose an attribute to add a point to:");
             System.out.println("\u001B[32m" + "STR, DEX, CON, INT, WIS, CHA" + "\u001B[0m");

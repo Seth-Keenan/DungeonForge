@@ -55,7 +55,12 @@ public class Main {
                     	Scanner fileIn = new Scanner(file);
                     	List<Character> characters = new ArrayList<>();
                 		characters = CharacterFile.loadCharacters(fileIn);
-                		Display.DisplayCharacterList(characters);
+                		if(characters.isEmpty() == true) 
+                		{                			
+                			System.out.println("There are no characters saved in the list.");
+                		}
+                		else
+                			Display.DisplayCharacterList(characters);
                 		fileIn.close();
                         break;
                     case 5:
