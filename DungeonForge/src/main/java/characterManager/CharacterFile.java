@@ -1,6 +1,8 @@
 package characterManager;
 
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +42,18 @@ public class CharacterFile {
 		return characters;
 	}
 
-	public static void clearFile(Scanner fileIn) 
+	public static void clearFile(File file) 
 	{
 		String header = "Name,Class,Race,Lvl,Str,Dex,Con,Int,Wis,Cha";
 		
-		
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(file)))
+		{
+			writer.write(header);
+		} 
+		catch (IOException e) 
+		{
+			System.out.println("An issue occured while trying to clear the file.");
+		}
 	}
 	
 	public static Character readFromFile(String line) 
