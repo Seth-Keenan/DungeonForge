@@ -128,4 +128,18 @@ public class CharacterCreator {
 
 	    return input;
 	}
+	
+	public static Character readFromFile(String line) 
+	{
+		String[] parsed = line.split(",");
+		Character character = new Character(parsed[0],Race.valueOf(parsed[2]),CType.valueOf(parsed[1]));
+		character.setLevel(Integer.valueOf(parsed[3]));
+		character.setStr(Integer.valueOf(parsed[4]));
+		character.setDex(Integer.valueOf(parsed[5]));
+		character.setCon(Integer.valueOf(parsed[6]));
+		character.setIntel(Integer.valueOf(parsed[7]));
+		character.setWis(Integer.valueOf(parsed[8]));
+		character.setCha(Integer.valueOf(parsed[9]));
+		return character;
+	}
 }
