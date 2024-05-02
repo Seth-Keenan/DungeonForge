@@ -79,10 +79,7 @@ public class Main {
                     case 6:
                     	System.out.println();
                     	CharacterFile.clearFile(file);
-                    	System.out.println("Files Deleted.");
-                    	
-                    	//TODO delete the file contents
-                    	
+                    	System.out.println("Files Deleted.");                    	
                     	break;
                     default:
                         System.out.println("Invalid choice. Please select a number between 1 and 6.");
