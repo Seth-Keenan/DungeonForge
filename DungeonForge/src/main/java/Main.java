@@ -1,8 +1,8 @@
 import java.util.Scanner;
 
-import characterManagement.CharacterFactory;
-import characterManagement.classType;
-import characterManagement.raceType;
+import characterManager.CharacterCreator;
+import characterManager.Character;
+import characterManager.Display;
 
 public class Main {
 
@@ -18,46 +18,19 @@ public class Main {
 	//Read any csv formatted correctly with load feature
 	
 	public static void main(String[] args) {
-		CharacterFactory factory = new CharacterFactory();
-		
-		characterManagement.Character character = factory.createCharacter(classType.BARBARIAN, raceType.HUMAN, "Seth");	
-		character.talk();
 		
 		Scanner scanner = new Scanner(System.in);
-		System.out.println("Please enter your character's name: ");
-		String name = scanner.nextLine();
+		CharacterCreator characterCreator = new CharacterCreator();
 		
-		classType type = null;
-		raceType race = null;
+		//This is the Create Character Feature
+		Character newChar = characterCreator.newCharacter(scanner);
+				
+		//This is the load in character feature with specific information
+		//Character loadInPersonal = characterCreator.loadCharacter(scanner);
 		
-		while(type == null) {
-			try {		
-				System.out.println("Please enter your character's class: ");
-				String typeIn = scanner.nextLine().toUpperCase();
-				type = classType.valueOf(typeIn);
-			} catch (IllegalArgumentException e) {
-				System.out.println("Invalid class. Please try again.");
-			}
-		}
-		
-		while(race == null) 
-		{
-			try {
-				System.out.println("Please enter your character's race: ");
-				String raceIn = scanner.nextLine().toUpperCase();
-				race = raceType.valueOf(raceIn);
-			} catch (IllegalArgumentException e) {
-				System.out.println("Invalid race. Please try again.");
-			}
-		}
-		
-		
-		characterManagement.Character c = factory.createCharacter(type, race, name);	
-		c.talk();
-		
-		scanner.close();
-		
-
+		//This is the Display feature
+		Display.Display(newChar);
 	}
 
+	
 }
