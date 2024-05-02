@@ -17,42 +17,16 @@ public class CharacterCreator {
 		Race race = null;
 		
 		//Skills
-		while(type == null) {
-			try {		
-				System.out.println("Please enter your character's class: ");
-				System.out.println("\u001B[32m" + "BARBARIAN, BARD, CLERIC, DRUID, FIGHTER, MONK, PALADIN, RANGER, ROGUE, SORCERER, WARLOCK, WIZARD" + "\u001B[0m");
-				String typeIn = scanner.nextLine().toUpperCase();
-				type = CType.valueOf(typeIn);
-				System.out.println();
-			} catch (IllegalArgumentException e) {
-				System.out.println("Invalid class. Please try again.");
-				System.out.println();
-			}
-		}
+		type = promptType(type, scanner);
 		
 		//Abilities
-		while(race == null) 
-		{
-			try {
-				System.out.println("Please enter your character's race: ");
-				System.out.println("\u001B[32m" + "DRAGONBORN, DWARF, ELF, GNOME, HALFELF, HALFLING, HALFORC, HUMAN, TIEFLING" + "\u001B[0m");
-				String raceIn = scanner.nextLine().toUpperCase();
-				race = Race.valueOf(raceIn);
-				System.out.println();
-			} catch (IllegalArgumentException e) {
-				System.out.println("Invalid race. Please try again.");
-				System.out.println();
-			}
-		}
+		race = promptRace(race, scanner);
 		
 		Character character = new Character(name, race, type);
 		
-		
 		Attributes.updateAbilitiesFromAttributes(character, scanner);
 		race.updateAbilitiesFromRace(race, character, scanner);
-		//Adding one for each save use was important before using the standard dnd array
-		//type.updateAbilitiesFromClass(type, character);
-		
+
 		return character;
 	}
 	
@@ -66,33 +40,10 @@ public class CharacterCreator {
 		Race race = null;
 		
 		//Skills
-		while(type == null) {
-			try {		
-				System.out.println("Please enter your character's class: ");
-				System.out.println("\u001B[32m" + "BARBARIAN, BARD, CLERIC, DRUID, FIGHTER, MONK, PALADIN, RANGER, ROGUE, SORCERER, WARLOCK, WIZARD" + "\u001B[0m");
-				String typeIn = scanner.nextLine().toUpperCase();
-				type = CType.valueOf(typeIn);
-				System.out.println();
-			} catch (IllegalArgumentException e) {
-				System.out.println("Invalid class. Please try again.");
-				System.out.println();
-			}
-		}
+		type = promptType(type, scanner);
 		
 		//Abilities
-		while(race == null) 
-		{
-			try {
-				System.out.println("Please enter your character's race: ");
-				System.out.println("\u001B[32m" + "DRAGONBORN, DWARF, ELF, GNOME, HALFELF, HALFLING, HALFORC, HUMAN, TIEFLING" + "\u001B[0m");
-				String raceIn = scanner.nextLine().toUpperCase();
-				race = Race.valueOf(raceIn);
-				System.out.println();
-			} catch (IllegalArgumentException e) {
-				System.out.println("Invalid race. Please try again.");
-				System.out.println();
-			}
-		}
+		race = promptRace(race, scanner);
 		
 		Character character = new Character(name, race, type);
 		
@@ -137,4 +88,40 @@ public class CharacterCreator {
 	    return input;
 	}
 	
+	public static CType promptType(CType type, Scanner scanner) 
+	{
+		while(type == null) {
+			try {		
+				System.out.println("Please enter your character's class: ");
+				System.out.println("\u001B[32m" + "BARBARIAN, BARD, CLERIC, DRUID, FIGHTER, MONK, PALADIN, RANGER, ROGUE, SORCERER, WARLOCK, WIZARD" + "\u001B[0m");
+				String typeIn = scanner.nextLine().toUpperCase();
+				type = CType.valueOf(typeIn);
+				System.out.println();
+			} catch (IllegalArgumentException e) {
+				System.out.println("Invalid class. Please try again.");
+				System.out.println();
+			}
+		}
+		
+		return type;
+	}
+	
+	public static Race promptRace(Race race, Scanner scanner) 
+	{
+		while(race == null) 
+		{
+			try {
+				System.out.println("Please enter your character's race: ");
+				System.out.println("\u001B[32m" + "DRAGONBORN, DWARF, ELF, GNOME, HALFELF, HALFLING, HALFORC, HUMAN, TIEFLING" + "\u001B[0m");
+				String raceIn = scanner.nextLine().toUpperCase();
+				race = Race.valueOf(raceIn);
+				System.out.println();
+			} catch (IllegalArgumentException e) {
+				System.out.println("Invalid race. Please try again.");
+				System.out.println();
+			}
+		}
+		
+		return race;
+	}
 }
