@@ -16,6 +16,7 @@ public enum CType {
 	WARLOCK,
 	WIZARD;
 	
+	//This can be used if not using the standard dnd attribute array
 	public void updateAbilitiesFromClass(CType type, Character player) 
 	{
 		switch(type) 

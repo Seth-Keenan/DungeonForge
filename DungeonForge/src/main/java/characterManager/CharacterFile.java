@@ -6,10 +6,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import characterManager.enums.CType;
+import characterManager.enums.Race;
+
 public class CharacterFile {
 
 	public static void saveCharacter(Character character, BufferedWriter writer) 
-	{
+	{		
 		try {
 			writer.newLine();
 			writer.write(character.getName() + "," + character.getType() + "," + character.getRace() + "," + character.getLevel() + "," + character.getStr() + "," + character.getDex() + "," + character.getCon() + "," + character.getIntel() + "," + character.getWis() + "," + character.getCha());
@@ -17,18 +20,6 @@ public class CharacterFile {
 		} catch (IOException e) {
 			System.out.println("An error has occured while saving your character.");
 		}
-	}
-	
-	public static void writeCharactersToFile(List<Character> characters, Scanner fileIn) 
-	{
-		//Skip header
-		if(fileIn.hasNextLine()) 
-		{
-			fileIn.nextLine();
-		}
-		
-		//TODO finish writing charcter write to csv
-	
 	}
 	
 	public static List<Character> loadCharacters(Scanner fileIn) 
@@ -43,44 +34,31 @@ public class CharacterFile {
 		while(fileIn.hasNextLine()) 
 		{
 			String line = fileIn.nextLine();
-			Character current = CharacterCreator.readFromFile(line);
+			Character current = readFromFile(line);
 			characters.add(current);
 		}
-		
 		return characters;
 	}
-	
-	public static void deleteCharacter(Scanner delOption, Scanner fileIn) 
+
+	public static void clearFile(Scanner fileIn) 
 	{
-		try {
-			List<Character> inFile = new ArrayList<>();
-			inFile = loadCharacters(fileIn);
-			Display.DisplayCharacterList(inFile);
-			
-			System.out.println("Please choose the character to delete, or 'exit' to cancel: ");
-			String in = delOption.nextLine();
-			
-			if(in.equalsIgnoreCase("exit")) 
-			{
-				System.out.println("Deletion Cancled");
-				return;
-			}
-			
-			int idxToDel = Integer.parseInt(in);
-			
-			if(idxToDel >= 0 && idxToDel < inFile.size()) 
-			{
-				Character deleted = inFile.get(idxToDel);
-				inFile.remove(idxToDel);
-				System.out.println("Deleted: " + deleted.getName());
-				
-				writeCharactersToFile(inFile, fileIn);
-			}	
-		}
-		catch (NumberFormatException e) 
-		{
-			System.out.println("Invalid Input. Please input a valid index or 'exit' to cancel");
-		}
+		String header = "Name,Class,Race,Lvl,Str,Dex,Con,Int,Wis,Cha";
+		
+		
+	}
+	
+	public static Character readFromFile(String line) 
+	{
+		String[] parsed = line.split(",");
+		Character character = new Character(parsed[0],Race.valueOf(parsed[2]),CType.valueOf(parsed[1]));
+		character.setLevel(Integer.valueOf(parsed[3]));
+		character.setStr(Integer.valueOf(parsed[4]));
+		character.setDex(Integer.valueOf(parsed[5]));
+		character.setCon(Integer.valueOf(parsed[6]));
+		character.setIntel(Integer.valueOf(parsed[7]));
+		character.setWis(Integer.valueOf(parsed[8]));
+		character.setCha(Integer.valueOf(parsed[9]));
+		return character;
 	}
 	
 }

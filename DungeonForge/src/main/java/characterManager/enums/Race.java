@@ -15,6 +15,7 @@ public enum Race {
 	HUMAN,
 	TIEFLING;
 	
+	//Race Modifiers
 	public void updateAbilitiesFromRace(Race race, Character player, Scanner scanner) {
 	    switch (race) {
 	        case DRAGONBORN:
@@ -63,43 +64,43 @@ public enum Race {
 	                // Check if the player has already allocated a point to the chosen attribute
 	                switch (attribute) {
 	                    case STR:
-	                        if (player.getStr() >= 1) {
+	                        if (player.getStr() >= 17) {
 	                            System.out.println("You've already given a point to Strength. Choose another attribute.");
 	                            continue;
 	                        }
 	                        player.setStr(player.getStr() + 1);
 	                        break;
 	                    case DEX:
-	                        if (player.getDex() >= 1) {
+	                        if (player.getDex() >= 17) {
 	                            System.out.println("You've already given a point to Dexterity. Choose another attribute.");
 	                            continue;
 	                        }
 	                        player.setDex(player.getDex() + 1);
 	                        break;
 	                    case CON:
-	                        if (player.getCon() >= 1) {
+	                        if (player.getCon() >= 17) {
 	                            System.out.println("You've already given a point to Constitution. Choose another attribute.");
 	                            continue;
 	                        }
 	                        player.setCon(player.getCon() + 1);
 	                        break;
 	                    case INT:
-	                        if (player.getIntel() >= 1) {
+	                        if (player.getIntel() >= 17) {
 	                            System.out.println("You've already given a point to Intelligence. Choose another attribute.");
 	                            continue;
 	                        }
 	                        player.setIntel(player.getIntel() + 1);
 	                        break;
 	                    case WIS:
-	                        if (player.getWis() >= 1) {
+	                        if (player.getWis() >= 17) {
 	                            System.out.println("You've already given a point to Wisdom. Choose another attribute.");
 	                            continue;
 	                        }
 	                        player.setWis(player.getWis() + 1);
 	                        break;
 	                    case CHA:
-	                        if (player.getCha() >= 2) {
-	                            System.out.println("As a Half-Elf, you are not able to give another point to Charisma. Choose another attribute.");
+	                        if (player.getCha() >= 17) {
+	                            System.out.println("You've given the max amount of points to Charisma. Choose another attribute.");
 	                            continue;
 	                        }
 	                        player.setCha(player.getCha() + 1);
