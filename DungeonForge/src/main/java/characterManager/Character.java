@@ -28,11 +28,6 @@ public class Character {
 		this.race = race;
 		this.type = type;
 	}
-
-	public void destroy() 
-	{
-		this.scanner.close();
-	}
 	
 	public String getName() {
 		return name;
@@ -169,10 +164,6 @@ public class Character {
 				System.out.println("Invalid attribute. Please try again.");
 				continue;
 			}
-//			finally 
-//			{
-//				scanner.close();
-//			}
 
 			// Check if the player has already allocated a point to the chosen attribute
 			switch (attribute) {
@@ -337,19 +328,19 @@ public class Character {
 			break;
 		case HALFORC:
 			this.dex = (this.dex + 2);
-			this.setCon(1);
+			this.con = (this.con + 1);
 			break;
 		case HUMAN:
-			this.setCha(1);
-			this.setCon(1);
+			this.cha = (this.cha + 1);
+			this.con = (this.con + 1);
 			this.dex = (this.dex + 1);
-			this.setIntel(1);
-			this.setStr(1);
-			this.setWis(1);
+			this.intel = (this.intel + 1);
+			this.str = (this.str + 1);
+			this.wis = (this.wis + 1);
 			break;
 		case TIEFLING:
-			this.setCha(2);
-			this.setIntel(1);
+			this.cha = (this.cha + 2);
+			this.intel = (this.intel + 1);
 			break;
 		default:
 			break;
