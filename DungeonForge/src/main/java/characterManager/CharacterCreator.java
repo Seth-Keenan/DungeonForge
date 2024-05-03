@@ -3,7 +3,6 @@ package characterManager;
 import java.util.Scanner;
 
 import characterManager.enums.Race;
-import characterManager.enums.Attributes;
 import characterManager.enums.CType;
 
 public class CharacterCreator {
@@ -24,8 +23,8 @@ public class CharacterCreator {
 		
 		Character character = new Character(name, race, type);
 		
-		Attributes.updateAbilitiesFromAttributes(character, scanner);
-		race.updateAbilitiesFromRace(race, character, scanner);
+		character.updateAbilitiesFromAttributes();
+		character.updateAbilitiesFromRace();
 
 		return character;
 	}
@@ -69,7 +68,7 @@ public class CharacterCreator {
 		return character;
 	}
 	
-	public static int getValidIntInput(Scanner scanner, String prompt) {
+	public int getValidIntInput(Scanner scanner, String prompt) {
 	    int input = 0;
 	    boolean validInput = false;
 
@@ -88,7 +87,7 @@ public class CharacterCreator {
 	    return input;
 	}
 	
-	public static CType promptType(CType type, Scanner scanner) 
+	public CType promptType(CType type, Scanner scanner) 
 	{
 		while(type == null) {
 			try {		
@@ -106,7 +105,7 @@ public class CharacterCreator {
 		return type;
 	}
 	
-	public static Race promptRace(Race race, Scanner scanner) 
+	public Race promptRace(Race race, Scanner scanner) 
 	{
 		while(race == null) 
 		{

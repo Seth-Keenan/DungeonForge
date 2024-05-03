@@ -13,11 +13,11 @@ import characterManager.enums.Race;
 
 public class CharacterFile {
 
-	public static void saveCharacter(Character character, BufferedWriter writer) 
+	public void saveCharacter(Character character, BufferedWriter writer) 
 	{		
 		try {
 			writer.newLine();
-			writer.write(character.getName() + "," + character.getType() + "," + character.getRace() + "," + character.getLevel() + "," + character.getStr() + "," + character.getDex() + "," + character.getCon() + "," + character.getIntel() + "," + character.getWis() + "," + character.getCha());
+			writer.write(character.toCSV());
 			writer.flush();
 			System.out.println("Character saved.");
 		} catch (IOException e) {
@@ -25,7 +25,7 @@ public class CharacterFile {
 		}
 	}
 	
-	public static List<Character> loadCharacters(Scanner fileIn) 
+	public List<Character> loadCharacters(Scanner fileIn) 
 	{
 		//Skip header
 		if(fileIn.hasNextLine()) 
@@ -43,7 +43,7 @@ public class CharacterFile {
 		return characters;
 	}
 
-	public static void clearFile(File file) 
+	public void clearFile(File file) 
 	{
 		String header = "Name,Class,Race,Lvl,Str,Dex,Con,Int,Wis,Cha";
 		
@@ -57,7 +57,7 @@ public class CharacterFile {
 		}
 	}
 	
-	public static Character readFromFile(String line) 
+	public Character readFromFile(String line) 
 	{
 		String[] parsed = line.split(",");
 		Character character = new Character(parsed[0],Race.valueOf(parsed[2]),CType.valueOf(parsed[1]));

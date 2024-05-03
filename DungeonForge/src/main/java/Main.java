@@ -15,16 +15,22 @@ public class Main {
 
 	public static void main(String[] args) throws IOException 
 	{
-		Scanner scanner = new Scanner(System.in);
 		File file = new File("files/characters.csv");
 		Character current = null;
-
-		Display.titleDisplay();
 		
+		Scanner scanner = new Scanner(System.in);
+		CharacterCreator characterCreator = new CharacterCreator();
+		CharacterFile characterFile = new CharacterFile();
+		Display display = new Display();
+		
+		display.titleDisplay();
+		
+
+		boolean loop = true;
 		int choice = -1;
-        while (choice < 1 || choice > 6) 
+        while (loop)
         {
-    		Display.optionsDisplay();
+    		display.optionsDisplay();
             try 
             {
                 choice = Integer.parseInt(scanner.nextLine());
@@ -32,19 +38,17 @@ public class Main {
                 {
                     case 1:
                     	System.out.println();
-                		CharacterCreator characterCreator = new CharacterCreator();
                 		current = characterCreator.newCharacter(scanner);
                         break;
                     case 2:
                     	System.out.println();
-                    	CharacterCreator characterImporter = new CharacterCreator();
-                		current = characterImporter.loadCharacter(scanner);
+                		current = characterCreator.loadCharacter(scanner);
                         break;
                     case 3:
                     	System.out.println();
                     	if(current != null) 
                     	{
-                    		Display.DisplayCharacter(current); 
+							display.DisplayCharacter(current); 
                     	}
                     	else
                     		System.out.println("There is no current character selected.");                    		
@@ -54,13 +58,13 @@ public class Main {
                     	System.out.println();
                     	Scanner fileIn = new Scanner(file);
                     	List<Character> characters = new ArrayList<>();
-                		characters = CharacterFile.loadCharacters(fileIn);
+                		characters = characterFile.loadCharacters(fileIn);
                 		if(characters.isEmpty() == true) 
                 		{                			
                 			System.out.println("There are no characters saved in the list.");
                 		}
                 		else
-                			Display.DisplayCharacterList(characters);
+                			display.DisplayCharacterList(characters);
                 		fileIn.close();
                         break;
                     case 5:
@@ -69,7 +73,7 @@ public class Main {
                     	{
                 		FileWriter fr = new FileWriter(file,true);
                 		BufferedWriter br = new BufferedWriter(fr);
-                		CharacterFile.saveCharacter(current, br);
+                		characterFile.saveCharacter(current, br);
                 		fr.close();
                 		br.close();
                     	}
@@ -78,19 +82,21 @@ public class Main {
                         break;
                     case 6:
                     	System.out.println();
-                    	CharacterFile.clearFile(file);
+                    	characterFile.clearFile(file);
                     	System.out.println("Files Deleted.");                    	
                     	break;
+                    case 7:
+                    	loop = false;
+                    	break;
                     default:
-                        System.out.println("Invalid choice. Please select a number between 1 and 6.");
+                        System.out.println("Invalid choice. Please select a number between 1 and 7.");
                 }
             } 
             catch (NumberFormatException e) 
             {
                 System.out.println("Invalid input. Please enter a number.");
             }
-            choice = -1;
         }
         scanner.close();
-    }
+	}
 }
