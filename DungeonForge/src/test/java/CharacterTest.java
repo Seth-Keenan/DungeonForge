@@ -4,8 +4,16 @@ import characterManager.enums.CType;
 import characterManager.Display;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.io.ByteArrayInputStream;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.PrintStream;
 
 public class CharacterTest 
 {
@@ -116,5 +124,109 @@ public class CharacterTest
 	    
 	    assertEquals(expected, testCharacter.toCSV());
 	}
+
+	@Test
+	void testUAFRDragon() 
+	{
+		String expected = "Test,BARD,DRAGONBORN,1,2,0,0,0,0,1";
+		testCharacter.updateAbilitiesFromRace();
+		assertEquals(expected, testCharacter.toCSV());
+	}
+	
+	@Test
+	void testUAFRDwarf() 
+	{
+		String expected = "Test,BARD,DWARF,1,0,0,2,0,0,0";
+		testCharacter.setRace(Race.DWARF);
+		testCharacter.updateAbilitiesFromRace();
+		assertEquals(expected, testCharacter.toCSV());
+	}
+	
+	@Test
+	void testUAFRElf() 
+	{
+		String expected = "Test,BARD,ELF,1,0,2,0,0,0,0";
+		testCharacter.setRace(Race.ELF);
+		testCharacter.updateAbilitiesFromRace();
+		assertEquals(expected, testCharacter.toCSV());
+	}
+	
+	@Test
+	void testUAFRGnome() 
+	{
+		String expected = "Test,BARD,GNOME,1,0,0,0,2,0,0";
+		testCharacter.setRace(Race.GNOME);
+		testCharacter.updateAbilitiesFromRace();
+		assertEquals(expected, testCharacter.toCSV());
+	}
+	
+	@Test
+	void testUAFRHalfling() 
+	{
+		String expected = "Test,BARD,HALFLING,1,0,2,0,0,0,0";
+		testCharacter.setRace(Race.HALFLING);
+		testCharacter.updateAbilitiesFromRace();
+		assertEquals(expected, testCharacter.toCSV());
+	}
+	
+	@Test
+	void testUAFRHalforc() 
+	{
+		String expected = "Test,BARD,HALFORC,1,0,2,1,0,0,0";
+		testCharacter.setRace(Race.HALFORC);
+		testCharacter.updateAbilitiesFromRace();
+		assertEquals(expected, testCharacter.toCSV());
+	}
+	
+	@Test
+	void testUAFRHuman() 
+	{
+		String expected = "Test,BARD,HUMAN,1,1,1,1,1,1,1";
+		testCharacter.setRace(Race.HUMAN);
+		testCharacter.updateAbilitiesFromRace();
+		assertEquals(expected, testCharacter.toCSV());
+	}
+	
+	@Test
+	void testUAFRTiefling() 
+	{
+		String expected = "Test,BARD,TIEFLING,1,0,0,0,1,0,2";
+		testCharacter.setRace(Race.TIEFLING);
+		testCharacter.updateAbilitiesFromRace();
+		assertEquals(expected, testCharacter.toCSV());
+	}
+	
+	/*
+	@Test
+    public void testChooseHalfElfAbilities() {
+        String input = "STR";
+        ByteArrayInputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+
+        // Replace "YourClass" with the name of your class containing the chooseHalfElfAbilities() method
+        testCharacter.chooseHalfElfAbilities();
+    }
+	
+	@Test
+	public void testDisplayChoice() 
+	{
+		StringBuilder expected = new StringBuilder();
+		expected.append("Distribute Points: " + "\u001B[31m" + 1 + "\u001B[0m");
+		expected.append("\n");
+		expected.append("Current Attributes:");
+		expected.append(testCharacter.toString());
+		expected.append("Choose an attribute to add a point to:");
+		expected.append("\u001B[32m" + "STR, DEX, CON, INT, WIS" + "\u001B[0m");
+
 		
+		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(outputStream));
+		
+		testCharacter.displayChoice(1);
+		
+		String result = outputStream.toString();
+		
+		assertEquals(expected.toString(), result);
+	}
+    */
 }
