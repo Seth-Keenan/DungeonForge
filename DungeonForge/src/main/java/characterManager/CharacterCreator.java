@@ -81,7 +81,6 @@ public class CharacterCreator {
 	    }
 	    
 	    scanner.nextLine();
-	    scanner.close();
 	    return input;
 	}
 	
