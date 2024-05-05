@@ -1,3 +1,16 @@
+/**
+ * This class represents a character in a role-playing game.
+ * It stores information about the character's name, race, class, attributes, and level.
+ * Attributes include strength, dexterity, constitution, intelligence, wisdom, and charisma.
+ * The class provides methods for setting and getting character attributes,
+ * as well as methods for updating attributes based on race and class.
+ * Additionally, it includes methods for displaying character information and
+ * distributing attribute points during character creation.
+ * 
+ * @author SethKeenan
+ * @version 5/5/2024
+ */
+
 package characterManager;
 
 import characterManager.enums.Race;
@@ -7,8 +20,11 @@ import java.util.Scanner;
 import characterManager.enums.Attributes;
 import characterManager.enums.CType;
 
+/**
+ * Represents a character in a role-playing game.
+ */
 public class Character {
-
+	
 	private Scanner scanner = new Scanner(System.in);
 	
 	private String name;
@@ -23,92 +39,204 @@ public class Character {
 	private int wis = 0;
 	private int cha = 0;
 
+	/**
+     * Constructs a new Character with the given name, race, and class.
+     * 
+     * @param name The name of the character.
+     * @param race The race of the character.
+     * @param type The class/type of the character.
+     */
 	public Character(String name, Race race, CType type) {
 		this.name = name;
 		this.race = race;
 		this.type = type;
 	}
 	
+	/**
+     * Gets the name of the character.
+     * 
+     * @return The name of the character.
+     */
 	public String getName() {
 		return name;
 	}
 
+	/**
+     * Sets the name of the character.
+     * 
+     * @param name The new name of the character.
+     */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+     * Gets the level of the character.
+     * 
+     * @return The level of the character.
+     */
 	public int getLevel() {
 		return level;
 	}
 
+	/**
+     * Sets the level of the character.
+     * 
+     * @param level The new level of the character.
+     */
 	public void setLevel(int level) {
 		this.level = level;
 	}
-
+	
+	/**
+     * Gets the race of the character.
+     * 
+     * @return The race of the character.
+     */
 	public Race getRace() {
 		return race;
 	}
-
+	
+	/**
+     * Sets the race of the character.
+     * 
+     * @param race The new race of the character.
+     */
 	public void setRace(Race race) {
 		this.race = race;
 	}
-
+	
+	/**
+     * Gets the class/type of the character.
+     * 
+     * @return The class/type of the character.
+     */
 	public CType getType() {
 		return type;
 	}
-
+	
+	/**
+     * Sets the class/type of the character.
+     * 
+     * @param type The new class/type of the character.
+     */
 	public void setType(CType type) {
 		this.type = type;
 	}
-
+	
+	/**
+     * Gets the strength attribute of the character.
+     * 
+     * @return The strength attribute of the character.
+     */
 	public int getStr() {
 		return str;
 	}
-
+	
+	/**
+     * Sets the strength attribute of the character.
+     * 
+     * @param str The new strength attribute of the character.
+     */
 	public void setStr(int str) {
 		this.str = str;
 	}
 
+	/**
+     * Gets the dexterity attribute of the character.
+     * 
+     * @return The dexterity attribute of the character.
+     */
 	public int getDex() {
 		return dex;
 	}
 
+	/**
+     * Sets the dexterity attribute of the character.
+     * 
+     * @param dex The new dexterity attribute of the character.
+     */
 	public void setDex(int dex) {
 		this.dex = dex;
 	}
 
+	/**
+     * Gets the constitution attribute of the character.
+     * 
+     * @return The constitution attribute of the character.
+     */
 	public int getCon() {
 		return con;
 	}
 
+	/**
+     * Sets the constitution attribute of the character.
+     * 
+     * @param con The new constitution attribute of the character.
+     */
 	public void setCon(int con) {
 		this.con = con;
 	}
 
+	/**
+     * Gets the intelligence attribute of the character.
+     * 
+     * @return The intelligence attribute of the character.
+     */
 	public int getIntel() {
 		return intel;
 	}
 
+	/**
+     * Sets the intelligence attribute of the character.
+     * 
+     * @param intel The new intelligence attribute of the character.
+     */
 	public void setIntel(int intel) {
 		this.intel = intel;
 	}
-
+	
+	/**
+     * Gets the wisdom attribute of the character.
+     * 
+     * @return The wisdom attribute of the character.
+     */
 	public int getWis() {
 		return wis;
 	}
 
+	/**
+     * Sets the wisdom attribute of the character.
+     * 
+     * @param wis The new wisdom attribute of the character.
+     */
 	public void setWis(int wis) {
 		this.wis = wis;
 	}
 
+	/**
+     * Gets the charisma attribute of the character.
+     * 
+     * @return The charisma attribute of the character.
+     */
 	public int getCha() {
 		return cha;
 	}
 
+	/**
+     * Sets the charisma attribute of the character.
+     * 
+     * @param cha The new charisma attribute of the character.
+     */
 	public void setCha(int cha) {
 		this.cha = cha;
 	}
 
+    /**
+     * Returns a string representation of the character's attributes and information.
+     * 
+     * @return A string representation of the character.
+     */
 	@Override
 	public String toString() {
 		StringBuilder character = new StringBuilder();
@@ -127,12 +255,23 @@ public class Character {
 
 		return character.toString();
 	}
-
+	
+	/**
+     * Returns a CSV-formatted string representing the character's information.
+     * 
+     * @return A CSV-formatted string representing the character.
+     */
 	public String toCSV() {
 		return this.name + "," + this.type + "," + this.race + "," + this.level + "," + this.str + "," + this.dex + ","
 				+ this.con + "," + this.intel + "," + this.wis + "," + this.cha;
 	}
-
+	
+	/**
+     * Displays the available attribute options during character creation,
+     * including remaining points and current attribute values.
+     * 
+     * @param remainingPoints The number of attribute points remaining to distribute.
+     */
 	public void displayAttributeOptions(int remainingPoints) 
 	{
 		System.out.println("Distribute Points: " + "\u001B[31m" + remainingPoints + "\u001B[0m");
@@ -144,7 +283,9 @@ public class Character {
 		System.out.println("\u001B[32m" + "STR, DEX, CON, INT, WIS, CHA" + "\u001B[0m");
 	}
 	
-	// DND Standard Attribute Array
+	 /**
+     * Distributes attribute points based on the DnD standard attribute array.
+     */
 	public void updateAbilitiesFromAttributes() 
 	{
 		int[] data = { 15, 14, 13, 12, 10, 8 };
@@ -158,6 +299,9 @@ public class Character {
 	    }
 	}
 
+	 /**
+     * Distributes additional attribute points for choosing the HalfElf race.
+     */
 	public void chooseHalfElfAbilities() 
 	{
 		System.out.println("\u001B[1m" + "Please distribute the 2 additional attribute points for choosing Half-Elf." + "\u001B[0m");
@@ -173,6 +317,10 @@ public class Character {
 		}
 	}
 	
+	/**
+	 * This will return the attribute choice if it is valid
+	 * @return Attributes
+	 */
 	public Attributes attributeChoice() 
 	{
 		Attributes attribute = null;
@@ -196,7 +344,9 @@ public class Character {
 		
 	}
 	
-	// Race Modifiers
+	 /**
+     * Updates character attributes based on the chosen race.
+     */
 	public void updateAbilitiesFromRace() 
 	{
 		switch (race) 
@@ -242,6 +392,12 @@ public class Character {
 		}
 	}
 	
+	/**
+     * Changes the specified attribute by adding the given number of points to it.
+     * 
+     * @param attribute The attribute to change.
+     * @param addedPoints The number of points to add to the attribute.
+     */
 	public void changeAttributes(Attributes attribute, int addedPoints) 
 	{
 	    boolean isValidInput = false;

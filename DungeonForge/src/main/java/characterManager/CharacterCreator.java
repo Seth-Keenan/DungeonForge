@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author SethKeenan
+ * @version 5/5/2024
+ * 
+ */
+
 package characterManager;
 
 import java.util.Scanner;
@@ -5,7 +12,17 @@ import java.util.Scanner;
 import characterManager.enums.Race;
 import characterManager.enums.CType;
 
+/**
+ * Manages the creation and loading of characters in the game.
+ */
 public class CharacterCreator {
+	
+	/**
+     * Creates a new character by prompting the user for character details
+     * and distributing attribute points based on race and class.
+     * 
+     * @return The newly created character.
+     */
 	public Character newCharacter() 
 	{
 		Character character = startCharacter();
@@ -16,6 +33,12 @@ public class CharacterCreator {
 		return character;
 	}
 	
+	/**
+     * Loads a character by prompting the user to input the character's stats,
+     * including level and attributes.
+     * 
+     * @return The loaded character.
+     */
 	public Character loadCharacter() 
 	{
 		Character character = startCharacter();
@@ -42,7 +65,12 @@ public class CharacterCreator {
 		return character;
 	}
 	
-	@SuppressWarnings("resource")
+	/**
+     * Prompts the user to input the character's name and selects the character's
+     * class and race based on user input.
+     * 
+     * @return The initialized character.
+     */
 	public Character startCharacter() 
 	{
 		Scanner scanner = new Scanner(System.in);
@@ -64,6 +92,12 @@ public class CharacterCreator {
 		return character;
 	}
 	
+	/**
+     * Prompts the user to input an integer value, ensuring only valid integers are accepted.
+     * 
+     * @param prompt The prompt to display to the user.
+     * @return The valid integer input by the user.
+     */
 	public int getValidIntInput(String prompt) {
 		int input = 0;
 	    boolean validInput = false;
@@ -84,7 +118,12 @@ public class CharacterCreator {
 	    return input;
 	}
 	
-	@SuppressWarnings("resource")
+	/**
+     * Prompts the user to input the character's class, ensuring a valid class is chosen.
+     * 
+     * @param type The initial class chosen by the user (can be null if not yet chosen).
+     * @return The chosen character class.
+     */
 	public CType promptType(CType type) 
 	{
 		Scanner scanner = new Scanner(System.in);
@@ -103,7 +142,12 @@ public class CharacterCreator {
 		return type;
 	}
 	
-	@SuppressWarnings("resource")
+	/**
+     * Prompts the user to input the character's race, ensuring a valid race is chosen.
+     * 
+     * @param race The initial race chosen by the user (can be null if not yet chosen).
+     * @return The chosen character race.
+     */
 	public Race promptRace(Race race) 
 	{
 		Scanner scanner = new Scanner(System.in);

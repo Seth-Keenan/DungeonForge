@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author SethKeenan
+ * @version 5/5/2024
+ * 
+ */
+
 package characterManager;
 
 import java.io.BufferedWriter;
@@ -11,8 +18,17 @@ import java.util.Scanner;
 import characterManager.enums.CType;
 import characterManager.enums.Race;
 
+/**
+ * Handles reading from and writing to character files.
+ */
 public class CharacterFile {
 
+	/**
+     * Saves a character to the specified file using CSV format.
+     * 
+     * @param character The character to be saved.
+     * @param writer    The BufferedWriter used to write to the file.
+     */
 	public void saveCharacter(Character character, BufferedWriter writer) 
 	{		
 		try {
@@ -25,6 +41,12 @@ public class CharacterFile {
 		}
 	}
 	
+	/**
+     * Loads characters from the given file using Scanner.
+     * 
+     * @param fileIn The Scanner used to read from the file.
+     * @return A list of characters loaded from the file.
+     */
 	public List<Character> loadCharacters(Scanner fileIn) 
 	{
 		//Skip header
@@ -43,6 +65,11 @@ public class CharacterFile {
 		return characters;
 	}
 
+	/**
+     * Clears the contents of the given file.
+     * 
+     * @param file The file to be cleared.
+     */
 	public void clearFile(File file) 
 	{
 		String header = "Name,Class,Race,Lvl,Str,Dex,Con,Int,Wis,Cha";
@@ -57,6 +84,12 @@ public class CharacterFile {
 		}
 	}
 	
+	/**
+     * Reads character data from a string and constructs a Character object.
+     * 
+     * @param line The string containing character data in CSV format.
+     * @return The Character object created from the provided data.
+     */
 	public Character readFromFile(String line) 
 	{
 		String[] parsed = line.split(",");

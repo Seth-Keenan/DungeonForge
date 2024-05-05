@@ -1,12 +1,33 @@
+/**
+ * 
+ * @author SethKeenan
+ * @version 5/5/2024
+ * 
+ */
+
 package characterManager;
 
 import java.util.List;
 
+/**
+ * Handles displaying character information and user interface elements.
+ */
 public class Display {
+	
+	/**
+     * Displays the information of a single character.
+     * 
+     * @param player The character to be displayed.
+     */
 	public void DisplayCharacter(Character player) {
 		System.out.println(player);
 	}
 	
+	/**
+     * Displays the information of a list of characters along with their indices.
+     * 
+     * @param characters The list of characters to be displayed.
+     */
 	public void DisplayCharacterList(List<Character> characters) 
 	{
 		int idx = 0;
@@ -18,6 +39,9 @@ public class Display {
 		}
 	}
 	
+	/**
+     * Displays the title of the application.
+     */
 	public void titleDisplay() 
 	{
 		System.out.println("\u001B[1m" + "\u001B[33m" + "Welcome to Dungeon Forge" + "\u001B[0m");
@@ -25,6 +49,9 @@ public class Display {
 		System.out.println();
 	}
 	
+	/**
+     * Displays the options menu for the user.
+     */
 	public void optionsDisplay() 
 	{
 		System.out.println("--------------------------------");

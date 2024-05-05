@@ -1,3 +1,10 @@
+/**
+ * 
+ * @author SethKeenan
+ * @version 5/5/2024
+ * 
+ */
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -11,8 +18,17 @@ import characterManager.CharacterFile;
 import characterManager.Character;
 import characterManager.Display;
 
+/**
+ * The main class responsible for running the Dungeon Forge application.
+ */
 public class Main {
 
+	/**
+     * The main method that initializes and controls the application flow.
+     * 
+     * @param args The command-line arguments.
+     * @throws IOException If an I/O error occurs.
+     */
 	public static void main(String[] args) throws IOException 
 	{
 		File file = new File("files/characters.csv");
