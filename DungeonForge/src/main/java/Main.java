@@ -1,9 +1,7 @@
 import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -12,8 +10,6 @@ import characterManager.CharacterCreator;
 import characterManager.CharacterFile;
 import characterManager.Character;
 import characterManager.Display;
-import characterManager.enums.CType;
-import characterManager.enums.Race;
 
 public class Main {
 
@@ -22,10 +18,10 @@ public class Main {
 		File file = new File("files/characters.csv");
 		Character current = null;
 		
-		Scanner scanner = new Scanner(System.in);
 		CharacterCreator characterCreator = new CharacterCreator();
 		CharacterFile characterFile = new CharacterFile();
 		Display display = new Display();
+		Scanner scanner = new Scanner(System.in);
 		
 		display.titleDisplay();
 
@@ -34,7 +30,6 @@ public class Main {
         while (loop)
         {
     		display.optionsDisplay();
-    		
             try 
             {
                 choice = Integer.parseInt(scanner.nextLine());
@@ -42,11 +37,11 @@ public class Main {
                 {
                     case 1:
                     	System.out.println();
-                		current = characterCreator.newCharacter(scanner);
+                		current = characterCreator.newCharacter();
                         break;
                     case 2:
                     	System.out.println();
-                		current = characterCreator.loadCharacter(scanner);
+                		current = characterCreator.loadCharacter();
                         break;
                     case 3:
                     	System.out.println();

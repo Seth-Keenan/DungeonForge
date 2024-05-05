@@ -1,5 +1,4 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -35,6 +34,29 @@ public class CharacterFileTest {
 		testCharacter.setIntel(0);
 		testCharacter.setWis(0);
 		testCharacter.setCha(0);
+	}
+	
+	@Test
+	void testSaveCharacter() throws IOException 
+	{
+		CharacterFile charfile = new CharacterFile();
+
+		File file = new File("files/testSaveCharacter.csv");
+		FileWriter fr = new FileWriter(file,true);
+		BufferedWriter br = new BufferedWriter(fr);
+		
+		Scanner fileIn = new Scanner(file);
+		
+		charfile.saveCharacter(testCharacter, br);
+		
+		String line = fileIn.nextLine();
+		
+		Character newTest = charfile.readFromFile(line);
+		
+		String expected = testCharacter.toCSV();
+		String returned = newTest.toCSV();
+		
+		assertEquals(expected, returned);
 	}
 	
 	@Test

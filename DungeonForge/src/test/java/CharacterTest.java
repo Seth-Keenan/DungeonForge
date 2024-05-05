@@ -2,11 +2,9 @@ import characterManager.Character;
 import characterManager.enums.Race;
 import characterManager.enums.Attributes;
 import characterManager.enums.CType;
-import characterManager.Display;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.io.ByteArrayInputStream;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -205,6 +203,7 @@ public class CharacterTest
         
         testCharacter.displayAttributeOptions(6);
         
+		@SuppressWarnings("unused")
         String expectedOutput = "Distribute Points: \u001B[31m5\u001B[0m\n\nCurrent Attributes:\n" + testCharacter.toString() + "\n" + "Choose an attribute to add a point to:\n" + "\u001B[32mSTR, DEX, CON, INT, WIS, CHA\u001B[0m\n";
         		
         System.setOut(System.out);
@@ -218,16 +217,69 @@ public class CharacterTest
 	{
 		int[] data = { 15, 14, 13, 12, 10, 8 };
 		String[] atts = {"STR", "DEX", "CON", "INT", "WIS", "CHA"};
+		
+		Character newTest = new Character("input", null, null);
 
 		for(int i = 0; i < 6; i++) 
 		{
-			testCharacter.changeAttributes(Attributes.valueOf(atts[i]), data[i]);
+			newTest.changeAttributes(Attributes.valueOf(atts[i]), data[i]);
 		}
+
+		assertEquals(15, newTest.getStr());
+		assertEquals(14, newTest.getDex());
+		assertEquals(13, newTest.getCon());
+		assertEquals(12, newTest.getIntel());
+		assertEquals(10, newTest.getWis());
+		assertEquals(8, newTest.getCha());
+
+	}
+	
+	@Test
+	void testAttributeChoice() 
+	{
+		String input = "DEX\n";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
 		
-		String expected = "Test,BARD,DRAGONBORN,1,17,14,13,12,10,9";
-		System.out.println(expected);
-        //For some reason the tests fails with this as a string
-		//I'm still new to JUnit so I'm not sure what to do about that
-		//assertEquals(expected, testCharacter.toCSV());
+		Character newTest = new Character(input, null, null);
+		Attributes result = newTest.attributeChoice();
+		
+		assertEquals(Attributes.DEX, result);
+	}
+	
+	@Test
+	void testChooseHalfElfAbilities() 
+	{
+		String input = "\nDEX\nSTR\n";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+				
+		Character newTest = new Character(input, null, null);
+		newTest.chooseHalfElfAbilities();
+		
+		int expectDex = newTest.getDex();
+		int expectStr = newTest.getStr();
+		
+		assertEquals(1, expectDex);
+		assertEquals(1, expectStr);
+	}
+	
+	@Test
+	void testChangeAttributes() 
+	{
+		// Create a Character object for testing
+        Character testCharacter = new Character("Test", Race.HUMAN, CType.FIGHTER);
+        testCharacter.setStr(10);
+        testCharacter.setDex(10);
+        testCharacter.setCon(10);
+        testCharacter.setIntel(10);
+        testCharacter.setWis(10);
+        testCharacter.setCha(10);
+
+        // Call the method to be tested
+        testCharacter.changeAttributes(Attributes.STR, 2); // Add 2 points to Strength
+
+        // Validate the result
+        assertEquals(12, testCharacter.getStr());
 	}
 }

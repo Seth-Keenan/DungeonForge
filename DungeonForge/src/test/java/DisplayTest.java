@@ -61,6 +61,7 @@ public class DisplayTest {
 		
 		display.titleDisplay();
 		
+		@SuppressWarnings("unused")
 		String result = outputStream.toString();
 
         //For some reason the tests fails with this as a string
@@ -87,6 +88,7 @@ public class DisplayTest {
 		
 		display.optionsDisplay();
 		
+		@SuppressWarnings("unused")
 		String result = outputStream.toString();
 
 		//For some reason the tests fails with this as a string

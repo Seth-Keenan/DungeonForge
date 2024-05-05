@@ -6,54 +6,28 @@ import characterManager.enums.Race;
 import characterManager.enums.CType;
 
 public class CharacterCreator {
-	public Character newCharacter(Scanner scanner) 
+	public Character newCharacter() 
 	{
-		System.out.println("Please enter your character's name: ");
-		String name = scanner.nextLine();
-		System.out.println();
-		
-		CType type = null;
-		Race race = null;
-		
-		//Skills
-		type = promptType(type, scanner);
-		
-		//Abilities
-		race = promptRace(race, scanner);
-		
-		Character character = new Character(name, race, type);
-		
+		Character character = startCharacter();
+
 		character.updateAbilitiesFromAttributes();
 		character.updateAbilitiesFromRace();
 
 		return character;
 	}
 	
-	public Character loadCharacter(Scanner scanner) 
+	public Character loadCharacter() 
 	{
-		System.out.println("Please enter your character's name: ");
-		String name = scanner.nextLine();
-		System.out.println();
-		
-		CType type = null;
-		Race race = null;
-		
-		//Skills
-		type = promptType(type, scanner);
-		
-		//Abilities
-		race = promptRace(race, scanner);
-		
-		Character character = new Character(name, race, type);
+		Character character = startCharacter();
 		
 		System.out.println("Please insert current character's stats:");
-		int lvl = getValidIntInput(scanner, "Level: ");
-		int str = getValidIntInput(scanner, "Strength: ");
-		int dex = getValidIntInput(scanner, "Dexterity: ");
-		int con = getValidIntInput(scanner, "Constitution: ");
-		int intel = getValidIntInput(scanner, "Intelligence: ");
-		int wis = getValidIntInput(scanner, "Wisdom: ");
-		int cha = getValidIntInput(scanner, "Charisma: ");
+		int lvl = getValidIntInput("Level: ");
+		int str = getValidIntInput("Strength: ");
+		int dex = getValidIntInput("Dexterity: ");
+		int con = getValidIntInput("Constitution: ");
+		int intel = getValidIntInput("Intelligence: ");
+		int wis = getValidIntInput("Wisdom: ");
+		int cha = getValidIntInput("Charisma: ");
 		
 		character.setLevel(lvl);
 		character.setStr(str);
@@ -68,9 +42,32 @@ public class CharacterCreator {
 		return character;
 	}
 	
-	public int getValidIntInput(Scanner scanner, String prompt) {
+	@SuppressWarnings("resource")
+	public Character startCharacter() 
+	{
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Please enter your character's name: ");
+		String name = scanner.nextLine();
+		System.out.println();
+		
+		CType type = null;
+		Race race = null;
+		
+		//Skills
+		type = promptType(type);
+		
+		//Abilities
+		race = promptRace(race);
+		
+		Character character = new Character(name, race, type);
+		
+		return character;
+	}
+	
+	public int getValidIntInput(String prompt) {
 		int input = 0;
 	    boolean validInput = false;
+		Scanner scanner = new Scanner(System.in);
 
 	    while (!validInput) {
 	        try {
@@ -84,11 +81,14 @@ public class CharacterCreator {
 	    }
 	    
 	    scanner.nextLine();
+	    scanner.close();
 	    return input;
 	}
 	
-	public CType promptType(CType type, Scanner scanner) 
+	@SuppressWarnings("resource")
+	public CType promptType(CType type) 
 	{
+		Scanner scanner = new Scanner(System.in);
 		while(type == null) {
 			try {		
 				System.out.println("Please enter your character's class: ");
@@ -104,8 +104,10 @@ public class CharacterCreator {
 		return type;
 	}
 	
-	public Race promptRace(Race race, Scanner scanner) 
+	@SuppressWarnings("resource")
+	public Race promptRace(Race race) 
 	{
+		Scanner scanner = new Scanner(System.in);
 		while(race == null) 
 		{
 			try {
