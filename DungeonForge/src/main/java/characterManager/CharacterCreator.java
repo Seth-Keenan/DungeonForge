@@ -69,7 +69,7 @@ public class CharacterCreator {
 	}
 	
 	public int getValidIntInput(Scanner scanner, String prompt) {
-	    int input = 0;
+		int input = 0;
 	    boolean validInput = false;
 
 	    while (!validInput) {
@@ -101,7 +101,6 @@ public class CharacterCreator {
 				System.out.println();
 			}
 		}
-		
 		return type;
 	}
 	
@@ -120,7 +119,6 @@ public class CharacterCreator {
 				System.out.println();
 			}
 		}
-		
 		return race;
 	}
 }

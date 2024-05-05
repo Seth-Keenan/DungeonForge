@@ -1,24 +1,25 @@
-import org.junit.jupiter.api.BeforeEach;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.Scanner;
+
 import org.junit.jupiter.api.Test;
 
-import characterManager.Character;
 import characterManager.CharacterCreator;
-import characterManager.enums.CType;
-import characterManager.enums.Race;
-
-public class CharacterCreatorTest {
-	
-	Character testCharacter;
-	
-	@BeforeEach
-	void newUp() 
+public class CharacterCreatorTest 
+{
+	@Test
+	void testGetValidIntInput() 
 	{
-		testCharacter = new Character("Test", Race.ELF, CType.BARD);
-		testCharacter.setStr(15);
-		testCharacter.setDex(16);
-		testCharacter.setCon(13);
-		testCharacter.setIntel(12);
-		testCharacter.setWis(10);
-		testCharacter.setCha(8);
+		CharacterCreator creator = new CharacterCreator();
+		
+		String input = "123\n";
+		InputStream in = new ByteArrayInputStream(input.getBytes());
+		System.setIn(in);
+		
+		assertEquals(123, creator.getValidIntInput(""));
 	}
 }

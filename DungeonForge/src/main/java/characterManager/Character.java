@@ -133,213 +133,174 @@ public class Character {
 				+ this.con + "," + this.intel + "," + this.wis + "," + this.cha;
 	}
 
+	public void displayAttributeOptions(int remainingPoints) 
+	{
+		System.out.println("Distribute Points: " + "\u001B[31m" + remainingPoints + "\u001B[0m");
+		System.out.println();
+		System.out.println("Current Attributes:");
+		System.out.println(this);
+
+		System.out.println("Choose an attribute to add a point to:");
+		System.out.println("\u001B[32m" + "STR, DEX, CON, INT, WIS, CHA" + "\u001B[0m");
+	}
+	
 	// DND Standard Attribute Array
 	public void updateAbilitiesFromAttributes() 
 	{
-		int remainingPoints = 0;
 		int[] data = { 15, 14, 13, 12, 10, 8 };
-		//Scanner scanner = new Scanner(System.in);
-
-		System.out.println("\u001B[1m" + "Please distribute the standard array of attribute points." + "\u001B[0m");
-
-		while (remainingPoints < 6) {
-			Attributes attribute = null;
-
-			// Display the available attributes and their current values
-			System.out.println("Distribute Points: " + "\u001B[31m" + data[remainingPoints] + "\u001B[0m");
+	    for (int remainingPoints = 0; remainingPoints < 6; remainingPoints++) 
+	    {
+			System.out.println("\u001B[1m" + "Please distribute the standard array of attribute points." + "\u001B[0m");
+			displayAttributeOptions(data[remainingPoints]);
+			Attributes attribute = attributeChoice();
+			changeAttributes(attribute, data[remainingPoints]);
 			System.out.println();
-			System.out.println("Current Attributes:");
-			System.out.println(this);
-
-			System.out.println("Choose an attribute to add a point to:");
-			System.out.println("\u001B[32m" + "STR, DEX, CON, INT, WIS, CHA" + "\u001B[0m");
-			String typeIn = scanner.nextLine().toUpperCase();
-
-			try 
-			{
-				attribute = Attributes.valueOf(typeIn);
-			} 
-			catch (IllegalArgumentException e) 
-			{
-				System.out.println("Invalid attribute. Please try again.");
-				continue;
-			}
-
-			// Check if the player has already allocated a point to the chosen attribute
-			switch (attribute) {
-			case STR:
-				if (this.str >= 15) {
-					System.out.println("You've already distributed points to Strength. Choose another attribute.");
-					continue;
-				}
-				this.str = (this.str + data[remainingPoints]);
-				break;
-			case DEX:
-				if (this.dex >= 15) {
-					System.out.println("You've already distributed points to Dexterity. Choose another attribute.");
-					continue;
-				}
-				this.dex = (this.dex + data[remainingPoints]);
-				break;
-			case CON:
-				if (this.con >= 15) {
-					System.out.println("You've already distributed points to Constitution. Choose another attribute.");
-					continue;
-				}
-				this.con = (this.con + data[remainingPoints]);
-				break;
-			case INT:
-				if (this.intel >= 15) {
-					System.out.println("You've already distributed points to Intellegence. Choose another attribute.");
-					continue;
-				}
-				this.intel = (this.intel + data[remainingPoints]);
-				break;
-			case WIS:
-				if (this.wis >= 15) {
-					System.out.println("You've already distributed points to Wisdom. Choose another attribute.");
-					continue;
-				}
-				this.wis = (this.wis + data[remainingPoints]);
-				break;
-			case CHA:
-				if (this.cha >= 15) {
-					System.out.println("You've already distributed points to Charisma. Choose another attribute.");
-					continue;
-				}
-				this.cha = (this.cha + data[remainingPoints]);
-				break;
-			default:
-				break;
-			}
-			System.out.println();
-			remainingPoints++;
-		}
+	    }
 	}
 
-	// Race Modifiers
-	public void updateAbilitiesFromRace() {
-//		Scanner scanner = new Scanner(System.in);
-		switch (race) 
+	public void chooseHalfElfAbilities() 
+	{
+		System.out.println("\u001B[1m" + "Please distribute the 2 additional attribute points for choosing Half-Elf." + "\u001B[0m");
+		for(int remainingPoints = 2; remainingPoints > 0; remainingPoints--) 
 		{
-		case DRAGONBORN:
-			this.str += 2;
-			this.cha += 1;
-			break;
-		case DWARF:
-			this.con += 2;
-			break;
-		case ELF:
-			this.dex += 2;
-			break;
-		case GNOME:
-			this.intel += 2;
-			break;
-		case HALFELF:
-			this.cha += 2;
-			chooseHalfElfAbilities();
-			break;			
-		case HALFLING:
-			this.dex += 2;
-			break;
-		case HALFORC:
-			this.dex += 2;
-			this.con += 1;
-			break;
-		case HUMAN:
-			this.cha += 1;
-			this.con += 1;
-			this.dex += 1;
-			this.intel += 1;
-			this.str += 1;
-			this.wis += 1;
-			break;
-		case TIEFLING:
-			this.cha += 2;
-			this.intel += 1;
-			break;
-		default:
-			break;
+			// Display the available attributes and their current values
+			displayAttributeOptions(remainingPoints);
+			// Get attribute choice
+			Attributes attribute = attributeChoice();		
+			// Check if the this has already allocated a point to the chosen attribute
+			changeAttributes(attribute, 1);
+			System.out.println();
 		}
 	}
 	
-	public void chooseHalfElfAbilities() 
+	public Attributes attributeChoice() 
 	{
-		int remainingPoints = 2;
-		System.out.println("\u001B[1m" + "Please distribute the additional attribute points." + "\u001B[0m");
+		Attributes attribute = null;
+	    boolean isValidInput = false;
 
-		while (remainingPoints > 0) {
-			Attributes attribute = null;
-
-			// Display the available attributes and their current values
-			System.out.println("Remaining Points: " + "\u001B[31m" + remainingPoints + "\u001B[0m");
-			System.out.println();
-			System.out.println(this);
-			System.out.println();
-
-			System.out.println("Choose an attribute to add a point to:");
-			System.out.println("\u001B[32m" + "STR, DEX, CON, INT, WIS" + "\u001B[0m");
-			String typeIn = scanner.nextLine().toUpperCase();
-
+	    while(!isValidInput) 
+	    {
 			try 
 			{
+				String typeIn = scanner.nextLine().toUpperCase();
 				attribute = Attributes.valueOf(typeIn);
+				isValidInput = true;
 			} 
 			catch (IllegalArgumentException e) 
 			{
 				System.out.println("Invalid attribute. Please try again.");
 				continue;
 			}
-			// Check if the this has already allocated a point to the chosen attribute
-			switch (attribute) {
-			case STR:
-				if (this.str >= 17) {
-					System.out.println("You've already given a point to Strength. Choose another attribute.");
-					continue;
-				}
-				this.str = (this.str + 1);
+		}
+		return attribute;
+		
+	}
+	
+	// Race Modifiers
+	public void updateAbilitiesFromRace() 
+	{
+		switch (race) 
+		{
+			case DRAGONBORN:
+				this.str += 2;
+				this.cha += 1;
 				break;
-			case DEX:
-				if (this.dex >= 17) {
-					System.out.println("You've already given a point to Dexterity. Choose another attribute.");
-					continue;
-				}
-				this.dex = (this.dex + 1);
+			case DWARF:
+				this.con += 2;
 				break;
-			case CON:
-				if (this.con >= 17) {
-					System.out.println("You've already given a point to Constitution. Choose another attribute.");
-					continue;
-				}
-				this.con = (this.con + 1);
+			case ELF:
+				this.dex += 2;
 				break;
-			case INT:
-				if (this.intel >= 17) {
-					System.out.println("You've already given a point to Intelligence. Choose another attribute.");
-					continue;
-				}
-				this.intel = (this.intel + 1);
+			case GNOME:
+				this.intel += 2;
 				break;
-			case WIS:
-				if (this.wis >= 17) {
-					System.out.println("You've already given a point to Wisdom. Choose another attribute.");
-					continue;
-				}
-				this.wis = (this.wis + 1);
+			case HALFELF:
+				this.cha += 2;
+				chooseHalfElfAbilities();
+				break;			
+			case HALFLING:
+				this.dex += 2;
 				break;
-			case CHA:
-				if (this.cha >= 17) {
-					System.out.println(
-							"You've given the max amount of points to Charisma. Choose another attribute.");
-					continue;
-				}
-				this.cha = (this.cha + 1);
+			case HALFORC:
+				this.dex += 2;
+				this.con += 1;
+				break;
+			case HUMAN:
+				this.cha += 1;
+				this.con += 1;
+				this.dex += 1;
+				this.intel += 1;
+				this.str += 1;
+				this.wis += 1;
+				break;
+			case TIEFLING:
+				this.cha += 2;
+				this.intel += 1;
 				break;
 			default:
 				break;
+		}
+	}
+	
+	public void changeAttributes(Attributes attribute, int addedPoints) 
+	{
+	    boolean isValidInput = false;
+
+		while(!isValidInput) 
+		{
+			switch (attribute) {
+			case STR:
+				if (this.str > 17) {
+					System.out.println("You've already distributed the max points to Strength. Choose another attribute.");
+					continue;
+				}
+				this.str += addedPoints;
+				isValidInput = true;
+				break;
+			case DEX:
+				if (this.dex > 17) {
+					System.out.println("You've already distributed the max points to Dexterity. Choose another attribute.");
+					continue;
+				}
+				this.dex += addedPoints;
+				isValidInput = true;
+				break;
+			case CON:
+				if (this.con > 17) {
+					System.out.println("You've already distributed the max points to Constitution. Choose another attribute.");
+					continue;
+				}
+				this.con += addedPoints;
+				isValidInput = true;
+				break;
+			case INT:
+				if (this.intel > 17) {
+					System.out.println("You've already distributed the max points to Intellegence. Choose another attribute.");
+					continue;
+				}
+				this.intel += addedPoints;
+				isValidInput = true;
+				break;
+			case WIS:
+				if (this.wis > 17) {
+					System.out.println("You've already distributed the max points to Wisdom. Choose another attribute.");
+					continue;
+				}
+				this.wis += addedPoints;
+				isValidInput = true;
+				break;
+			case CHA:
+				if (this.cha > 17) {
+					System.out.println("You've already distributed the max points to Charisma. Choose another attribute.");
+					continue;
+				}
+				this.cha += addedPoints;
+				isValidInput = true;
+				break;
+			default:
+				break;
+
 			}
-			System.out.println();
-			remainingPoints--;
 		}
 	}
 }

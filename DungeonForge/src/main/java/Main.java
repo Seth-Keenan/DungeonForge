@@ -1,7 +1,9 @@
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,6 +12,8 @@ import characterManager.CharacterCreator;
 import characterManager.CharacterFile;
 import characterManager.Character;
 import characterManager.Display;
+import characterManager.enums.CType;
+import characterManager.enums.Race;
 
 public class Main {
 
@@ -24,13 +28,13 @@ public class Main {
 		Display display = new Display();
 		
 		display.titleDisplay();
-		
 
 		boolean loop = true;
 		int choice = -1;
         while (loop)
         {
     		display.optionsDisplay();
+    		
             try 
             {
                 choice = Integer.parseInt(scanner.nextLine());
@@ -71,11 +75,11 @@ public class Main {
                     	System.out.println();
                     	if(current != null) 
                     	{
-                		FileWriter fr = new FileWriter(file,true);
-                		BufferedWriter br = new BufferedWriter(fr);
-                		characterFile.saveCharacter(current, br);
-                		fr.close();
-                		br.close();
+	                		FileWriter fr = new FileWriter(file,true);
+	                		BufferedWriter br = new BufferedWriter(fr);
+	                		characterFile.saveCharacter(current, br);
+	                		fr.close();
+	                		br.close();
                     	}
                     	else
                     		System.out.println("No selected character.");
