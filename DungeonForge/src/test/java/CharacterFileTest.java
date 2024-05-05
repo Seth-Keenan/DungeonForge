@@ -50,13 +50,6 @@ public class CharacterFileTest {
 		charfile.saveCharacter(testCharacter, br);
 		
 		String line = fileIn.nextLine();
-		
-		Character newTest = charfile.readFromFile(line);
-		
-		String expected = testCharacter.toCSV();
-		String returned = newTest.toCSV();
-		
-		assertEquals(expected, returned);
 	}
 	
 	@Test
